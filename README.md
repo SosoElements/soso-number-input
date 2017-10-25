@@ -1,2 +1,3 @@
-# soso-number-input
-A simple number input
+# \<soso-number-input\>
+
+Simple number input
