@@ -126,6 +126,10 @@
           step: {
             type: Number,
             value: 1
+          },
+          value: {
+            type: Number,
+            observer: '_onValue'
           }
         };
       }
@@ -157,18 +161,16 @@
         let v = this.value;
         this.dispatchEvent(new CustomEvent('change', { bubbles: true, composed: true, detail: { value: v } }));
       }
-      get value() {
-        return (+(this.$.t.value)) || this.min || 0;
-      }
 
-      set value(v) {
-        let value = +v;
+      _onValue() {
+        let value = this.value;
         if (this.max || this.max === 0) {
           value = Math.min(this.max, value);
         }
         if (this.min || this.min === 0) {
           value = Math.max(this.min, value);
         }
+        this.value = value;
         this.$.t.value = value;
       }
     }
