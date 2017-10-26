@@ -130,12 +130,16 @@
           value: {
             type: Number,
             observer: '_onValue'
-          }
+          },
+          fixed: Number
         };
       }
       _incr() {
         let oldV = (+(this.$.t.value)) || this.min || 0
         let v = oldV + this.step;
+        if (this.fixed) {
+          v = v.toFixed(this.fixed);
+        }
         if (this.max || this.max === 0) {
           v = Math.min(this.max, v);
         }
@@ -147,6 +151,9 @@
       _decr() {
         let oldV = (+(this.$.t.value)) || this.min || 0
         let v = oldV - this.step;
+        if (this.fixed) {
+          v = v.toFixed(this.fixed);
+        }
         if (this.min || this.min === 0) {
           v = Math.max(this.min, v);
         }
@@ -164,6 +171,9 @@
 
       _onValue() {
         let value = this.value;
+        if (this.fixed) {
+          value = value.toFixed(this.fixed);
+        }
         if (this.max || this.max === 0) {
           value = Math.min(this.max, value);
         }
