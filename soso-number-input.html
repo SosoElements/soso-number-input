@@ -170,7 +170,7 @@
       }
 
       _onValue() {
-        let value = this.value;
+        let value = +this.value || 0;
         if (this.fixed) {
           value = value.toFixed(this.fixed);
         }
