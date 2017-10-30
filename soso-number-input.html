@@ -1,20 +1,5 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
-<link rel="import" href="../iron-iconset-svg/iron-iconset-svg.html">
-
-<iron-iconset-svg name="sosonuminput" size="24">
-  <svg>
-    <defs>
-      <g id="add">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </g>
-      <g id="remove">
-        <path d="M19 13H5v-2h14v2z" />
-      </g>
-    </defs>
-  </svg>
-</iron-iconset-svg>
-
+<link rel="import" href="../soso-icon/soso-icon.html">
 <dom-module id="soso-number-input">
   <template>
     <style>
@@ -82,7 +67,7 @@
         box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.4) inset;
       }
 
-      iron-icon {
+      soso-icon {
         width: 18px;
         height: 18px;
       }
@@ -105,13 +90,13 @@
     </style>
     <div id="container">
       <div class="remove button" on-click="_decr">
-        <iron-icon icon="sosonuminput:remove"></iron-icon>
+        <soso-icon icon="remove" icon-map="[[_iconMap]]"></soso-icon>
       </div>
       <div class="flex inputPanel">
         <input id="t" type="number" min$="[[min]]" max$="[[max]]" step$="[[step]]" on-change="_change">
       </div>
       <div class="add button" on-click="_incr">
-        <iron-icon icon="sosonuminput:add"></iron-icon>
+        <soso-icon icon="add" icon-map="[[_iconMap]]"></soso-icon>
       </div>
     </div>
   </template>
@@ -131,7 +116,16 @@
             type: Number,
             observer: '_onValue'
           },
-          fixed: Number
+          fixed: Number,
+          _iconMap: {
+            type: Object,
+            value: () => {
+              return {
+                "add": "M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z",
+                "remove": "M19 13H5v-2h14v2z"
+              };
+            }
+          }
         };
       }
       _incr() {
